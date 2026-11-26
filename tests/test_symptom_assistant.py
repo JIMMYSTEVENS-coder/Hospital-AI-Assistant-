@@ -1,9 +1,13 @@
 import unittest
 
-from symptom_assistant import analyse_symptoms, normalise_symptoms
+from symptom_assistant import RULES, analyse_symptoms, normalise_symptoms
 
 
 class SymptomAssistantTests(unittest.TestCase):
+    def test_xml_knowledge_base_loads_multiple_illnesses(self):
+        self.assertGreaterEqual(len(RULES), 5)
+        self.assertTrue(any(rule.name == "Common cold" for rule in RULES))
+
     def test_normalise_symptoms(self):
         self.assertEqual(
             normalise_symptoms(" Cough, FEVER ,, sore throat "),
@@ -19,6 +23,10 @@ class SymptomAssistantTests(unittest.TestCase):
         result = analyse_symptoms({"fever", "body aches", "cough"})
         self.assertIn("Flu-like illness", result)
         self.assertIn("not a diagnosis", result.lower())
+
+    def test_hay_fever_rule_matches(self):
+        result = analyse_symptoms({"sneezing", "itchy eyes"})
+        self.assertIn("hay fever", result.lower())
 
     def test_unknown_symptoms_are_not_reassuring(self):
         result = analyse_symptoms({"unlisted symptom"})
