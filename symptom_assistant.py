@@ -1,10 +1,12 @@
-"""Educational, rule-based symptom assistant.
+"""Educational, XML-driven rule-based symptom assistant.
 
 This program is a coursework demonstration, not a medical device or diagnostic
 service. Its keyword rules are incomplete and must never be used to rule out
 an emergency or decide whether professional care is needed.
 """
 from dataclasses import dataclass
+from pathlib import Path
+import xml.etree.ElementTree as ET
 
 
 @dataclass
@@ -14,33 +16,30 @@ class ConditionRule:
     explanation: str
 
 
-RULES = [
-    ConditionRule(
-        "Common cold",
-        {"runny nose", "sneezing", "sore throat", "cough", "blocked nose"},
-        "These symptoms can occur with a common cold.",
-    ),
-    ConditionRule(
-        "Flu-like illness",
-        {"fever", "high temperature", "chills", "body aches", "muscle aches", "fatigue", "cough"},
-        "These symptoms can occur with flu or another viral infection.",
-    ),
-    ConditionRule(
-        "Possible hay fever",
-        {"sneezing", "itchy eyes", "watery eyes", "runny nose", "itchy nose"},
-        "These symptoms can be associated with hay fever or another allergy.",
-    ),
-    ConditionRule(
-        "Possible migraine",
-        {"headache", "throbbing headache", "sensitivity to light", "nausea"},
-        "Some of these symptoms can occur with migraine, but headaches have many causes.",
-    ),
-    ConditionRule(
-        "Possible stomach bug",
-        {"nausea", "vomiting", "diarrhoea", "stomach cramps", "abdominal pain"},
-        "These symptoms can occur with a stomach infection or food-related illness.",
-    ),
-]
+def load_rules(xml_path: Path | None = None) -> list[ConditionRule]:
+    """Load illness names, symptom keywords and explanations from illnesses.xml."""
+    path = xml_path or Path(__file__).with_name("illnesses.xml")
+    try:
+        root = ET.parse(path).getroot()
+    except (FileNotFoundError, ET.ParseError) as error:
+        raise RuntimeError(f"Could not load the illness knowledge base: {error}") from error
+
+    rules = []
+    for illness in root.findall("illness"):
+        name = illness.findtext("name", default="Unknown condition").strip()
+        explanation = illness.findtext("description", default="No description available.").strip()
+        symptoms = {
+            item.text.strip().lower()
+            for item in illness.findall("./symptoms/symptom")
+            if item.text and item.text.strip()
+        }
+        if symptoms:
+            rules.append(ConditionRule(name, symptoms, explanation))
+    return rules
+
+
+# The illness knowledge is stored separately in illnesses.xml.
+RULES = load_rules()
 
 # This deliberately small teaching list is NOT a complete emergency checklist.
 RED_FLAGS = {
@@ -59,7 +58,7 @@ def normalise_symptoms(text: str) -> set[str]:
 
 
 def analyse_symptoms(symptoms: set[str]) -> str:
-    """Apply explicit top-down rules and return a cautious explanation."""
+    """Compare user phrases with the rules loaded from the XML knowledge base."""
     urgent = symptoms.intersection(RED_FLAGS)
     if urgent:
         return (
@@ -99,6 +98,7 @@ def analyse_symptoms(symptoms: set[str]) -> str:
 
 def main() -> None:
     print("Hospital Symptom Assistant — educational prototype only")
+    print(f"Loaded {len(RULES)} example illness rules from illnesses.xml.")
     print("Enter symptoms separated by commas (for example: cough, fever).")
     print("Type 'quit' to exit. This is not a diagnostic tool.")
     while True:
