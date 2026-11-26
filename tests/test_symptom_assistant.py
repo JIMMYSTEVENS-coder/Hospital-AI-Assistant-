@@ -4,9 +4,11 @@ from symptom_assistant import RULES, analyse_symptoms, normalise_symptoms
 
 
 class SymptomAssistantTests(unittest.TestCase):
-    def test_xml_knowledge_base_loads_multiple_illnesses(self):
+    def test_xml_knowledge_base_loads_definitions_and_categories(self):
         self.assertGreaterEqual(len(RULES), 5)
-        self.assertTrue(any(rule.name == "Common cold" for rule in RULES))
+        cold = next(rule for rule in RULES if rule.name == "Common cold")
+        self.assertIn("Viral", cold.category)
+        self.assertIn("viral infection", cold.definition.lower())
 
     def test_normalise_symptoms(self):
         self.assertEqual(
