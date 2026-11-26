@@ -3,47 +3,48 @@
 ## Approach
 
 This artefact demonstrates a **top-down, rule-based AI system**. The illness
-knowledge is stored separately in the `illnesses.xml` file. The Python program
-loads that XML file, compares the user's symptom phrases with its predefined
-symptom keywords, and displays possible explanations.
+knowledge is stored in `illnesses.xml`. Python loads the XML entries and
+compares user-entered symptom phrases with predefined symptom keywords.
 
 ## XML knowledge base
 
-Each `<illness>` entry contains:
-- an ID;
-- a display name;
-- a cautious description;
-- a list of symptom phrases.
+Each illness entry contains:
+- an ID and display name;
+- a category, such as viral infection, allergic condition or headache disorder;
+- a short definition describing what the condition is;
+- a symptom explanation;
+- a list of matching symptom phrases.
 
-To add another example, create another `<illness>` entry in `illnesses.xml`.
-Add its name, description and symptom keywords. The XML file must remain valid.
+The categories are important because not every condition is an infection.
+For example, hay fever is allergic and migraine is neurological. Some
+conditions, such as conjunctivitis and sinusitis, can have different causes.
 
 ## Processing flow
 
 1. Read comma-separated symptom phrases.
 2. Convert phrases to lowercase and remove extra spaces.
-3. Load illness names, descriptions and symptom keywords from `illnesses.xml`.
+3. Load illness definitions, categories and symptom keywords from XML.
 4. Check the small red-flag keyword list first.
 5. If a red-flag phrase is present, show the urgent safety message.
-6. Otherwise compare the symptoms with each XML rule.
-7. Rank matching rules by the number of matching keywords.
-8. Display up to three possible explanations and explain the limitations.
+6. Otherwise compare symptoms with each XML entry.
+7. Rank matches by the number of matching keywords.
+8. Display up to three possible explanations, definitions and categories.
 
 ## Example
 
 Input: `fever, body aches, cough`
 
-The flu-like illness entry contains all three phrases, so it is returned as a
-possible explanation. This is a keyword overlap demonstration, not a
-probability or clinical confidence score.
+The flu-like illness entry contains these phrases, so it may be displayed as
+one possible explanation. The keyword count is not a probability, diagnosis,
+or reliable way to identify a particular virus.
 
 ## Limitations and safety
 
 - This is a coursework demonstration, not a diagnostic tool or medical device.
+- Symptoms overlap and cannot reliably identify the exact infection or germ.
 - The XML examples and emergency keyword list are deliberately incomplete.
 - A missing match does not mean the user is healthy.
-- A keyword match cannot confirm a condition; symptoms can have many causes.
-- The program does not collect medical history, age, medication, duration, or severity.
+- The program does not collect medical history, age, medication, duration, severity or test results.
 - Never use this prototype to rule out an emergency or delay professional care.
 - In England, contact NHS 111 for urgent advice when it is not an emergency.
   Call 999 for a medical emergency.
