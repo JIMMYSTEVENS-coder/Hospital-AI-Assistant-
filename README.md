@@ -1,7 +1,7 @@
 # Hospital AI Assistant
 
 A small Python coursework project demonstrating a **top-down, rule-based AI**
-that compares user-entered symptom phrases with a set of predefined rules.
+that compares user-entered symptom phrases with an XML knowledge base.
 
 > **Important:** This is an educational prototype, not a medical device or
 > diagnostic service. It cannot diagnose conditions, assess all emergencies,
@@ -11,10 +11,10 @@ that compares user-entered symptom phrases with a set of predefined rules.
 ## Features
 
 - Accepts comma-separated symptom phrases.
+- Loads example illnesses and symptom keywords from `illnesses.xml`.
 - Normalises input by removing extra spaces and using lowercase.
 - Checks a small red-flag keyword list before other rules.
-- Compares symptoms with predefined example rules.
-- Displays up to three possible explanations.
+- Displays up to three possible explanations based on keyword matches.
 - Includes automated unit tests and decision-logic documentation.
 
 ## Requirements
@@ -22,6 +22,8 @@ that compares user-entered symptom phrases with a set of predefined rules.
 - Python 3.10 or later (uses standard-library modules only).
 
 ## Run the assistant
+
+Keep `symptom_assistant.py` and `illnesses.xml` in the same folder, then run:
 
 ```bash
 python symptom_assistant.py
@@ -44,9 +46,9 @@ python -m unittest discover -s tests -v
 ## Example behaviour
 
 For `fever, body aches, cough`, the program can show **Flu-like illness** as
-one possible explanation because those phrases match its predefined rule.
-The keyword count is a simple demonstration score, not a probability or
-clinical confidence score.
+one possible explanation because those phrases match its XML entry. The keyword
+count is a simple demonstration score, not a probability or clinical confidence
+score.
 
 ## Health and safety
 
@@ -57,6 +59,7 @@ for emergency assessment.
 
 ## Project documentation
 
+- [Illness knowledge base](illnesses.xml)
 - [Decision logic](docs/DECISION_LOGIC.md)
 - [Testing guide](docs/TESTING.md)
 
