@@ -12,12 +12,14 @@ import xml.etree.ElementTree as ET
 @dataclass
 class ConditionRule:
     name: str
+    category: str
+    definition: str
     symptoms: set[str]
     explanation: str
 
 
 def load_rules(xml_path: Path | None = None) -> list[ConditionRule]:
-    """Load illness names, symptom keywords and explanations from illnesses.xml."""
+    """Load illness information and symptom keywords from illnesses.xml."""
     path = xml_path or Path(__file__).with_name("illnesses.xml")
     try:
         root = ET.parse(path).getroot()
@@ -27,18 +29,19 @@ def load_rules(xml_path: Path | None = None) -> list[ConditionRule]:
     rules = []
     for illness in root.findall("illness"):
         name = illness.findtext("name", default="Unknown condition").strip()
-        explanation = illness.findtext("description", default="No description available.").strip()
+        category = illness.findtext("category", default="Category not specified").strip()
+        definition = illness.findtext("definition", default="No definition available.").strip()
+        explanation = illness.findtext("description", default="No symptom description available.").strip()
         symptoms = {
             item.text.strip().lower()
             for item in illness.findall("./symptoms/symptom")
             if item.text and item.text.strip()
         }
         if symptoms:
-            rules.append(ConditionRule(name, symptoms, explanation))
+            rules.append(ConditionRule(name, category, definition, symptoms, explanation))
     return rules
 
 
-# The illness knowledge is stored separately in illnesses.xml.
 RULES = load_rules()
 
 # This deliberately small teaching list is NOT a complete emergency checklist.
@@ -58,7 +61,7 @@ def normalise_symptoms(text: str) -> set[str]:
 
 
 def analyse_symptoms(symptoms: set[str]) -> str:
-    """Compare user phrases with the rules loaded from the XML knowledge base."""
+    """Compare user phrases with XML rules and return cautious possible explanations."""
     urgent = symptoms.intersection(RED_FLAGS)
     if urgent:
         return (
@@ -81,13 +84,16 @@ def analyse_symptoms(symptoms: set[str]) -> str:
         )
 
     matches.sort(key=lambda item: item[0], reverse=True)
-    lines = ["Possible explanations (not a diagnosis):"]
+    lines = ["Possible explanations only — this is not a diagnosis:"]
     for score, rule, overlap in matches[:3]:
-        lines.append(f"- {rule.name}: {rule.explanation}")
-        lines.append(f"  Matching keywords: {', '.join(overlap)}")
+        lines.append(f"\n{rule.name}")
+        lines.append(f"Category: {rule.category}")
+        lines.append(f"What it is: {rule.definition}")
+        lines.append(f"How the symptoms relate: {rule.explanation}")
+        lines.append(f"Matching keywords: {', '.join(overlap)}")
     lines.append(
-        "The number of matching keywords is only a simple demonstration score; "
-        "it is not a probability, medical confidence score, or diagnosis."
+        "\nThe keyword count is a simple demonstration score, not a probability "
+        "or medical confidence score. Similar symptoms can have different causes."
     )
     lines.append(
         "If you are worried or need urgent medical advice in England, contact NHS 111. "
