@@ -3,7 +3,9 @@
     <!-- Educational examples only. Symptoms overlap and this list is incomplete. -->
     <illness id="common-cold">
         <name>Common cold</name>
-        <description>These symptoms can occur with a common cold.</description>
+        <category>Viral infection</category>
+        <definition>A common viral infection of the upper respiratory tract, including the nose and throat. It is often caused by rhinoviruses.</definition>
+        <description>A runny or blocked nose, sneezing, sore throat and cough can occur with a cold. These symptoms do not confirm the infection.</description>
         <symptoms>
             <symptom>runny nose</symptom>
             <symptom>sneezing</symptom>
@@ -15,7 +17,9 @@
 
     <illness id="flu-like-illness">
         <name>Flu-like illness</name>
-        <description>These symptoms can occur with flu or another viral infection.</description>
+        <category>Possible viral infection</category>
+        <definition>Influenza is a contagious respiratory infection caused by influenza viruses. Other viral infections can cause similar symptoms, so symptoms alone cannot confirm influenza.</definition>
+        <description>Fever, chills, muscle aches, tiredness and cough can occur with flu or other viral illnesses. A test or clinical assessment may be needed to identify the cause.</description>
         <symptoms>
             <symptom>fever</symptom>
             <symptom>high temperature</symptom>
@@ -29,7 +33,9 @@
 
     <illness id="hay-fever">
         <name>Possible hay fever</name>
-        <description>These symptoms can be associated with hay fever or another allergy.</description>
+        <category>Allergic condition - not an infection</category>
+        <definition>Hay fever is an allergic reaction to pollen. It is not caused by a virus or bacteria and is not contagious.</definition>
+        <description>Sneezing, itchy or watery eyes, and a runny or itchy nose can be associated with hay fever.</description>
         <symptoms>
             <symptom>sneezing</symptom>
             <symptom>itchy eyes</symptom>
@@ -41,7 +47,9 @@
 
     <illness id="migraine">
         <name>Possible migraine</name>
-        <description>Some of these symptoms can occur with migraine, but headaches have many causes.</description>
+        <category>Neurological condition - not an infection</category>
+        <definition>Migraine is a neurological condition that can cause recurring headache attacks and other symptoms. It is not an infection.</definition>
+        <description>Headache, nausea and sensitivity to light can occur with migraine, but headaches have many possible causes.</description>
         <symptoms>
             <symptom>headache</symptom>
             <symptom>throbbing headache</symptom>
@@ -51,8 +59,10 @@
     </illness>
 
     <illness id="stomach-bug">
-        <name>Possible stomach bug</name>
-        <description>These symptoms can occur with a stomach infection or food-related illness.</description>
+        <name>Possible gastroenteritis (stomach bug)</name>
+        <category>Often an infection; cause may be viral or bacterial</category>
+        <definition>Gastroenteritis is inflammation of the stomach and intestines. It is commonly caused by viruses, but bacteria and contaminated food or water can also be responsible.</definition>
+        <description>Nausea, vomiting, diarrhoea and stomach cramps can occur with gastroenteritis. Symptoms alone cannot identify the germ or prove that the cause is an infection.</description>
         <symptoms>
             <symptom>nausea</symptom>
             <symptom>vomiting</symptom>
@@ -64,7 +74,9 @@
 
     <illness id="tension-headache">
         <name>Possible tension-type headache</name>
-        <description>A pressing or tight-feeling headache can occur with tension-type headaches; other causes are possible.</description>
+        <category>Headache disorder - not an infection</category>
+        <definition>A common type of headache often described as pressure or tightness around the head. It is not an infection.</definition>
+        <description>A pressing or tight-feeling headache, sometimes with neck tension, can occur with this type of headache. Other causes are possible.</description>
         <symptoms>
             <symptom>pressing headache</symptom>
             <symptom>tight band headache</symptom>
@@ -75,7 +87,9 @@
 
     <illness id="sinusitis">
         <name>Possible sinusitis</name>
-        <description>These symptoms can occur with sinus inflammation or infection.</description>
+        <category>Inflammatory condition; sometimes an infection</category>
+        <definition>Sinusitis is inflammation of the sinuses, the air-filled spaces around the nose. It often follows a cold and is commonly associated with a viral infection; bacterial causes are possible but cannot be identified from symptoms alone.</definition>
+        <description>Facial pain or pressure, a blocked nose and reduced sense of smell can occur with sinusitis.</description>
         <symptoms>
             <symptom>facial pain</symptom>
             <symptom>sinus pressure</symptom>
@@ -87,7 +101,9 @@
 
     <illness id="conjunctivitis">
         <name>Possible conjunctivitis</name>
-        <description>Red or irritated eyes can have several causes, including conjunctivitis.</description>
+        <category>Eye inflammation; can be viral, bacterial or allergic</category>
+        <definition>Conjunctivitis is inflammation of the thin membrane covering the white of the eye and inner eyelid. It can be caused by viruses, bacteria or an allergy, so not every case is an infection.</definition>
+        <description>Redness, irritation, watering or sticky discharge can occur with conjunctivitis. These symptoms do not establish the cause.</description>
         <symptoms>
             <symptom>red eye</symptom>
             <symptom>red eyes</symptom>
