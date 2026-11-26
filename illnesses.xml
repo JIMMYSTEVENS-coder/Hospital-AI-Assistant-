@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<illnesses>
+    <!-- Educational examples only. Symptoms overlap and this list is incomplete. -->
+    <illness id="common-cold">
+        <name>Common cold</name>
+        <description>These symptoms can occur with a common cold.</description>
+        <symptoms>
+            <symptom>runny nose</symptom>
+            <symptom>sneezing</symptom>
+            <symptom>sore throat</symptom>
+            <symptom>cough</symptom>
+            <symptom>blocked nose</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="flu-like-illness">
+        <name>Flu-like illness</name>
+        <description>These symptoms can occur with flu or another viral infection.</description>
+        <symptoms>
+            <symptom>fever</symptom>
+            <symptom>high temperature</symptom>
+            <symptom>chills</symptom>
+            <symptom>body aches</symptom>
+            <symptom>muscle aches</symptom>
+            <symptom>fatigue</symptom>
+            <symptom>cough</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="hay-fever">
+        <name>Possible hay fever</name>
+        <description>These symptoms can be associated with hay fever or another allergy.</description>
+        <symptoms>
+            <symptom>sneezing</symptom>
+            <symptom>itchy eyes</symptom>
+            <symptom>watery eyes</symptom>
+            <symptom>runny nose</symptom>
+            <symptom>itchy nose</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="migraine">
+        <name>Possible migraine</name>
+        <description>Some of these symptoms can occur with migraine, but headaches have many causes.</description>
+        <symptoms>
+            <symptom>headache</symptom>
+            <symptom>throbbing headache</symptom>
+            <symptom>sensitivity to light</symptom>
+            <symptom>nausea</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="stomach-bug">
+        <name>Possible stomach bug</name>
+        <description>These symptoms can occur with a stomach infection or food-related illness.</description>
+        <symptoms>
+            <symptom>nausea</symptom>
+            <symptom>vomiting</symptom>
+            <symptom>diarrhoea</symptom>
+            <symptom>stomach cramps</symptom>
+            <symptom>abdominal pain</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="tension-headache">
+        <name>Possible tension-type headache</name>
+        <description>A pressing or tight-feeling headache can occur with tension-type headaches; other causes are possible.</description>
+        <symptoms>
+            <symptom>pressing headache</symptom>
+            <symptom>tight band headache</symptom>
+            <symptom>pressure around forehead</symptom>
+            <symptom>neck tension</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="sinusitis">
+        <name>Possible sinusitis</name>
+        <description>These symptoms can occur with sinus inflammation or infection.</description>
+        <symptoms>
+            <symptom>facial pain</symptom>
+            <symptom>sinus pressure</symptom>
+            <symptom>blocked nose</symptom>
+            <symptom>reduced sense of smell</symptom>
+            <symptom>thick nasal mucus</symptom>
+        </symptoms>
+    </illness>
+
+    <illness id="conjunctivitis">
+        <name>Possible conjunctivitis</name>
+        <description>Red or irritated eyes can have several causes, including conjunctivitis.</description>
+        <symptoms>
+            <symptom>red eye</symptom>
+            <symptom>red eyes</symptom>
+            <symptom>itchy eye</symptom>
+            <symptom>watery eye</symptom>
+            <symptom>sticky eye discharge</symptom>
+        </symptoms>
+    </illness>
+</illnesses>
